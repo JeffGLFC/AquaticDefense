@@ -1,25 +1,29 @@
-function enemy(myType,mySpeed,myHealth,myDescription,myIcon,myStartLocation)
+function enemy(myType,mySpeed,myHealth,myDescription,myIcon,myStartLocation,myWayPoint)
 {
-	var type = myType;
-	var baseSpeed = mySpeed;
-	var currentSpeed = baseSpeed;
-	var speedTimer = 0;
-	var health = myHealth;
-	var description = myDescription;
-	var icon = myIcon;
-	identifier = new createjs.Bitmap(myIcon);
+	this.kind = myType;
+	this.baseSpeed = mySpeed;
+	this.currentSpeed = this.baseSpeed;
+	this.speedTimer = 0;
+	this.health = myHealth;
+	this.description = myDescription;
+	this.icon = myIcon;
+	this.identifier = new createjs.Bitmap(myIcon);
+	this.startLocation = myStartLocation
+	this.waypoint = myWayPoint;
 
-console.log(stage);
-	 identifier.x = myStartLocation['x'];
-	 identifier.y = myStartLocation['y'];
-	 stage.addChild(identifier);
-	 stage.update();
+	this.identifier.x = myStartLocation['x'];
+	this.identifier.y = myStartLocation['y'];
+	stage.addChild(this.identifier);
+	stage.update();
 
 }
 
 enemy.prototype.move = function() 
 {
-	console.log('moving');
+	//console.log(this.identifier.x + "," + this.identifier.y);
+	console.log(this.waypoint);
+	//createjs.Tween.get(this.identifier,{loop:true}).to({x:924},3000).to({x:0},3000);
+	createjs.Tween.get(this.identifier,{loop:true}).to({x:this.identifier.x,y:this.identifier.y},3000).to(this.waypoint,3000);
 }
 
 enemy.prototype.update = function()

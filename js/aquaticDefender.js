@@ -2,44 +2,35 @@ function init()
 {
 	stage = new createjs.Stage("demoCanvas");
 	var bg = new createjs.Bitmap("assets/grass1_bg.png");
+	stage.addChild(bg);
 
 	enemies = [];
 	towers = [];
 	startLocation = {x: 32,y:64};
-	newlamprey = new enemy('lamprey','10','50',"Sea Lamprey", "assets/lamprey.png",startLocation);
+	newlamprey1 = new enemy('lamprey','10','50',"Sea Lamprey", "assets/lamprey.png",{x: 32,y:64},{x: 32,y:608});
 
-	enemies.unshift(newlamprey);
-	newlamprey = new enemy('lamprey','10','50',"Sea Lamprey", "assets/lamprey.png",startLocation);
-	enemies.unshift(newlamprey);
-	newlamprey = new enemy('lamprey','10','50',"Sea Lamprey", "assets/lamprey.png",startLocation);
-	enemies.unshift(newlamprey);
+	enemies.unshift(newlamprey1);
+	newlamprey2 = new enemy('lamprey','10','50',"Sea Lamprey", "assets/lamprey.png",{x: 64,y:64},{x: 64,y:608});
+	enemies.unshift(newlamprey2);
+	newlamprey3 = new enemy('lamprey','10','50',"Sea Lamprey", "assets/lamprey.png",{x: 96,y:64},{x: 96,y:608});
+	enemies.unshift(newlamprey3);
 
-	enemies[0].update();
-	enemies[1].update();
-	enemies[2].update();
-	//stage.addChild(enemies[0].identifier);
-	
+	newlamprey1.move();
+	newlamprey2.move();
+	newlamprey3.move();
 
 
-
+// enemies.forEach(function(enemy){
+// 		enemy.move();
+// 	});
     //Create a stage by getting a reference to the canvas
-    stage = new createjs.Stage("demoCanvas");
-
-	var bg = new createjs.Bitmap("assets/grass1_bg.png");
-	lamprey1 = new createjs.Bitmap("assets/lamprey.png");
-    lamprey1.x = lamprey1.y = 0;
-
-    lamprey2 = new createjs.Bitmap("assets/lamprey.png");
-    lamprey2.x = lamprey2.y = 320;
-    
-    stage.addChild(bg);
-    //stage.addChild(lamprey1);
-    //stage.addChild(lamprey2);
-    //stage.addChild(bgSrc);
+       
     //Update stage will render next frame
 
     createjs.Ticker.addEventListener('tick',tick);
-  	createjs.Tween.get(lamprey1,{loop:true}).to({x:924},3000).to({x:0},3000);  
+//  	createjs.Tween.get(lamprey1,{loop:true}).to({x:924},3000).to({x:0},3000);  
+
+	//createjs.Tween.get(enemies[1].identifier,{loop:true}).to({x:924},3000).to({x:0},3000);
 }
 
 function tick()
