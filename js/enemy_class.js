@@ -20,10 +20,7 @@ function enemy(myType,mySpeed,myHealth,myDescription,myIcon,myStartLocation,myWa
 
 enemy.prototype.move = function() 
 {
-	//console.log(this.identifier.x + "," + this.identifier.y);
-	console.log(this.waypoint);
-	//createjs.Tween.get(this.identifier,{loop:true}).to({x:924},3000).to({x:0},3000);
-	createjs.Tween.get(this.identifier,{loop:true}).to({x:this.identifier.x,y:this.identifier.y},3000).to(this.waypoint,3000);
+	createjs.Tween.get(this.identifier,{loop:true}).to({x:this.identifier.x,y:this.identifier.y},3000).to(this.waypoint[0],3000).to(this.waypoint[1],3000).to(this.waypoint[2],3000).to(this.waypoint[3],3000);
 }
 
 enemy.prototype.update = function()

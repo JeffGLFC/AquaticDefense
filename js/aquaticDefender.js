@@ -1,36 +1,39 @@
 function init()
 {
 	stage = new createjs.Stage("demoCanvas");
-	var bg = new createjs.Bitmap("assets/grass1_bg.png");
+	var bg = new createjs.Bitmap("assets/stream1_bg.png");
 	stage.addChild(bg);
 
 	enemies = [];
 	towers = [];
 	startLocation = {x: 32,y:64};
-	newlamprey1 = new enemy('lamprey','10','50',"Sea Lamprey", "assets/lamprey.png",{x: 32,y:64},{x: 32,y:608});
 
-	enemies.unshift(newlamprey1);
-	newlamprey2 = new enemy('lamprey','10','50',"Sea Lamprey", "assets/lamprey.png",{x: 64,y:64},{x: 64,y:608});
-	enemies.unshift(newlamprey2);
-	newlamprey3 = new enemy('lamprey','10','50',"Sea Lamprey", "assets/lamprey.png",{x: 96,y:64},{x: 96,y:608});
-	enemies.unshift(newlamprey3);
+	waypoints = [{x: 288,y:64},{x: 544,y:416},{x: 608,y:416},{x: 928,y:224}];
+	lamprey = new enemy('lamprey','10','50',"Sea Lamprey", "assets/lamprey.png",{x: 0,y:224},waypoints);
+	enemies.unshift(lamprey);
+	waypoints = [{x: 288,y:96},{x: 544,y:448},{x: 608,y:448},{x: 928,y:224}];
+	lamprey = new enemy('lamprey','10','50',"Sea Lamprey", "assets/lamprey.png",{x: 0,y:256},waypoints);
+	enemies.unshift(lamprey);
+	waypoints = [{x: 288,y:128},{x: 544,y:480},{x: 608,y:480},{x: 928,y:224}];
+	lamprey = new enemy('lamprey','10','50',"Sea Lamprey", "assets/lamprey.png",{x: 0,y:288},waypoints);
+	enemies.unshift(lamprey);
 
-	newlamprey1.move();
-	newlamprey2.move();
-	newlamprey3.move();
-
-
-// enemies.forEach(function(enemy){
-// 		enemy.move();
-// 	});
-    //Create a stage by getting a reference to the canvas
+	enemies.forEach(function(enemy){
+		enemy.identifier.addEventListener("click", handleClick);
+		// console.log('test');
+		// console.log(enemy.identifier);
+		enemy.move();
+	});
        
     //Update stage will render next frame
 
     createjs.Ticker.addEventListener('tick',tick);
-//  	createjs.Tween.get(lamprey1,{loop:true}).to({x:924},3000).to({x:0},3000);  
 
-	//createjs.Tween.get(enemies[1].identifier,{loop:true}).to({x:924},3000).to({x:0},3000);
+}
+
+function handleClick(event)
+{
+	alert('clicked');
 }
 
 function tick()
